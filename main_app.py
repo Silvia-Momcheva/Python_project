@@ -1,9 +1,8 @@
 import tkinter as tk
 from tkinter import messagebox
-from gui_utils import AppGUI
-from data_utils import merge_data, merge_group_data
-from table_utils import show_merged_data
 
+from guii import App
+from data_utils import merge_data, merge_group_data
 
 def exit_app():
     if messagebox.askokcancel("Изход", "Сигурни ли сте, че искате да излезете?"):
@@ -20,8 +19,6 @@ if __name__ == "__main__":
     merged_data = merge_data(pr_file, st_file)
     merged_data_with_group = merge_group_data(merged_data, vidove_file)
 
-    app_gui = AppGUI(root, merged_data_with_group)
-
     # Добавете меню към главния прозорец
     menubar = tk.Menu(root)
     file_menu = tk.Menu(menubar, tearoff=0)
@@ -29,4 +26,5 @@ if __name__ == "__main__":
     menubar.add_cascade(label="Файл", menu=file_menu)
 
     root.config(menu=menubar)
+    app_gui = App(root, merged_data_with_group)
     root.mainloop()
